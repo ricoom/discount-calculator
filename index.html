@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="stylesheet" href="style.css">
+  <title>RICOOM | discount calculator</title>
+
+
+</head>
+
+<body>
+  <h1>SPLI<br>TTER</h1>
+  <div class="container">
+    <div class="col-1">
+      <p>Bill</p>
+      <input type="text" placeholder="sh" id="bill">
+      <div class="btn-card">
+        <input type="button" id="per_d" value="5">
+        <input type="button" id="per_d" value="10">
+        <input type="button" id="per_d" value="15">
+        <input type="button" id="per_d" value="25">
+        <input type="button" id="per_d" value="50">
+        <input type="text" id="custom" placeholder="custom">
+      </div>
+
+      <input type="number" name="" id="people">
+      <span>number of people</span>
+
+    </div>
+    <div class="col-2">
+      <div class="card">
+        <div class="dis_p">
+          <p>Tip amount <span><br>/person</span></p>
+          <h2 id="tip"> sh4.27</h2>
+        </div>
+        <div class="dis_p">
+          <p>Total <span><br>/person</span></p>
+          <h2 id="total"> sh4.27</h2>
+        </div>
+        <button class="reset" id="reset">RESET</button>
+      </div>
+    </div>
+  </div>
+  <script>
+    const bill_input = document.getElementById('bill')
+    const custom_btn = document.getElementById('custom')
+    const tip_amt = document.getElementById('tip')
+    const total = document.getElementById('total')
+    const _reset = document.getElementById('reset')
+
+    let btns = document.querySelectorAll('#per_d')
+    let bill = 0
+    let discount = 0;
+
+    bill_input.addEventListener('keyup', () => {
+      bill = bill_input.value;
+    })
+
+    btns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        discount = btn.value * 0.01;
+        tip_amt.innerText = "sh " + cal_disc()
+        total.innerText = "sh " + cal_total()
+        console.log("tip is" + bill * discount)
+      })
+
+    });
+
+    custom_btn.addEventListener('keyup', () => {
+      discount = custom_btn.value * 0.01;
+      tip_amt.innerText = "sh " + cal_disc()
+      total.innerText = "sh " + cal_total()
+      console.log("tip is" + bill * discount)
+      console.log(discount)
+
+    })
+
+    _reset.addEventListener('click', reset())
+    function reset() {
+
+      tip_amt.innerText = "sh " + 0.00
+      total.innerText = "sh " + 0.00
+    }
+
+    function cal_disc() {
+      console.log(bill * discount)
+      return bill * discount;
+    }
+    function cal_total() {
+      return bill - cal_disc();
+    }
+
+  </script>
+</body>
+
+</html>
