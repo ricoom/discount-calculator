@@ -80,12 +80,13 @@
 
     })
 
-    _reset.addEventListener('click', reset())
-    function reset() {
-
+    _reset.addEventListener('click', ()=>{
+      bill_input.value=""
+      custom_btn.value=""
       tip_amt.innerText = "sh " + 0.00
       total.innerText = "sh " + 0.00
-    }
+    })
+    
 
     function cal_disc() {
       console.log(bill * discount)
